@@ -77,6 +77,10 @@ browser.menus.onShown.addListener((info, tab) => {
           "id": "yt-play",
           "title": "Play Video",
           "contexts": ["tab"],
+          "icons": {
+            "16": "icons/play-16.png",
+            "32": "icons/play-32.png"
+          }
         }, onCreated);
         break;
       case 'VIDEO_PLAYING':
@@ -84,6 +88,10 @@ browser.menus.onShown.addListener((info, tab) => {
           "id": "yt-pause",
           "title": "Pause Video",
           "contexts": ["tab"],
+          "icons": {
+            "16": "icons/pause-16.png",
+            "32": "icons/pause-32.png"
+          }
         }, onCreated);
         break;
       case 'NO_VIDEO':
