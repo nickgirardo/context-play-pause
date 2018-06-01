@@ -1,9 +1,25 @@
 
+const checkVideoStatus = `{
+  const video = document.querySelector('video');
+  if (video) {
+    if (video.paused) 'VIDEO_PAUSED';
+    else 'VIDEO_PLAYING';
+  } else {
+    'NO_VIDEO';
+  }
+}`
+
+const toggleVideoPlaying = `{
+  const video = document.querySelector('video');
+  if (video) {
+    if (video.paused) video.play();
+    else video.pause();
+  }
+}`
+
 function onCreated() {
   if(browser.runtime.lastError) {
     console.error(`Error: ${browser.runtime.lastError}`);
-  } else {
-    console.log("Menu item created successfully");
   }
 }
 
@@ -11,17 +27,10 @@ browser.menus.onClicked.addListener((info, tab) => {
   switch(info.menuItemId) {
     case "yt-play":
     case "yt-pause":
-      browser.tabs.executeScript(tab.id, 
-        {code: `
-          {
-            const video = document.querySelector('video');
-            if (video) {
-              if (video.paused) video.play();
-              else video.pause();
-            }
-          }
-        `}
-      );
+      browser.tabs.executeScript(tab.id, {code: toggleVideoPlaying});
+      break;
+    default:
+      console.error("Error: Unexpected button press");
       break;
   }
 });
@@ -32,20 +41,8 @@ browser.menus.onShown.addListener((info, tab) => {
     return;
 
   browser.menus.removeAll();
-  browser.tabs.executeScript(tab.id,
-    {code: `
-      {
-        const video = document.querySelector('video');
-        if (video) {
-          if (video.paused) 'VIDEO_PAUSED';
-          else 'VIDEO_PLAYING';
-        } else {
-          'NO_VIDEO';
-        }
-      }
-    `}
-  ).then(videoStatus => {
-    console.log('videoStatus', videoStatus[0]);
+  browser.tabs.executeScript(tab.id, {code: checkVideoStatus})
+  .then(videoStatus => {
     switch(videoStatus[0]) {
       case 'VIDEO_PAUSED':
         browser.menus.create({
