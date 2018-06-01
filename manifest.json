@@ -5,7 +5,8 @@
     "description": "Play and pause videos from the tab context menu",
     
     "icons": {
-        "48": "icons/temp-48.png" 
+        "48": "icons/play-pause-48.png",
+        "96": "icons/play-pause-96.png"
     },
 
     "permissions": [
