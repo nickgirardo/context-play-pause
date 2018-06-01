@@ -1,5 +1,11 @@
 {
     "manifest_version": 2,
+    "applications": {
+        "gecko": {
+            "strict_min_version": "60.0"
+        }
+    },
+
     "name": "Context Play/ Pause",
     "version": "1.0",
     "description": "Play and pause videos from the tab context menu",
