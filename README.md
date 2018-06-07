@@ -2,6 +2,8 @@
 
 WebExtension: Play and pause videos from a tabs context menu
 
+[You can install it from Mozilla here](https://addons.mozilla.org/en-US/firefox/addon/context-play-pause/)
+
 ![Check it out](assets/menu-demo.png)
 
 Compatible with Firefox 60.0+ (requires menus.onShown among other events)
